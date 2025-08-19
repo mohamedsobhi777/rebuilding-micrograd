@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Micrograd Interactive Explainer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Micrograd: A Tiny Autograd Engine</h1>
+            <p>Interactive visualization of automatic differentiation and neural networks</p>
+        </header>
+
+        <nav class="section-nav">
+            <button class="nav-btn active" data-section="basic-operations">Basic Operations</button>
+            <button class="nav-btn" data-section="computational-graph">Computational Graph</button>
+            <button class="nav-btn" data-section="backpropagation">Backpropagation</button>
+            <button class="nav-btn" data-section="neural-networks">Neural Networks</button>
+            <button class="nav-btn" data-section="training">Training Loop</button>
+        </nav>
+
+        <main>
+            <!-- Basic Operations Section -->
+            <section id="basic-operations" class="content-section active">
+                <h2>Basic Value Operations</h2>
+                <p>The Value class wraps scalars and tracks gradients through operations:</p>
+                
+                <div class="demo-container">
+                    <div class="controls">
+                        <button id="add-demo-btn" class="demo-btn">Addition Demo</button>
+                        <button id="mul-demo-btn" class="demo-btn">Multiplication Demo</button>
+                        <button id="tanh-demo-btn" class="demo-btn">Tanh Demo</button>
+                        <button id="reset-basic-btn" class="reset-btn">Reset</button>
+                    </div>
+                    
+                    <div id="basic-viz" class="visualization">
+                        <svg id="basic-svg" width="800" height="300">
+                            <!-- Basic operation nodes will be created here -->
+                        </svg>
+                    </div>
+                    
+                    <div class="code-display">
+                        <pre id="basic-code">
+a = Value(2.0, label='a')
+b = Value(-3.0, label='b')
+c = a * b
+# c.data = -6.0</pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Computational Graph Section -->
+            <section id="computational-graph" class="content-section">
+                <h2>Computational Graph</h2>
+                <p>Watch how operations build a directed acyclic graph:</p>
+                
+                <div class="demo-container">
+                    <div class="controls">
+                        <button id="build-graph-btn" class="demo-btn">Build Graph</button>
+                        <button id="highlight-path-btn" class="demo-btn">Highlight Path</button>
+                        <button id="reset-graph-btn" class="reset-btn">Reset</button>
+                    </div>
+                    
+                    <div id="graph-viz" class="visualization">
+                        <svg id="graph-svg" width="900" height="400">
+                            <!-- Computational graph will be created here -->
+                        </svg>
+                    </div>
+                    
+                    <div class="expression-builder">
+                        <h3>Expression: L = (a * b + c) * f</h3>
+                        <div class="step-info">
+                            <p id="current-step">Click "Build Graph" to start</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Backpropagation Section -->
+            <section id="backpropagation" class="content-section">
+                <h2>Backpropagation Animation</h2>
+                <p>See how gradients flow backward through the computation graph:</p>
+                
+                <div class="demo-container">
+                    <div class="controls">
+                        <button id="forward-pass-btn" class="demo-btn">Forward Pass</button>
+                        <button id="backward-pass-btn" class="demo-btn">Backward Pass</button>
+                        <button id="step-backward-btn" class="demo-btn">Step Backward</button>
+                        <button id="reset-backprop-btn" class="reset-btn">Reset</button>
+                    </div>
+                    
+                    <div id="backprop-viz" class="visualization">
+                        <svg id="backprop-svg" width="900" height="500">
+                            <!-- Backpropagation visualization will be created here -->
+                        </svg>
+                    </div>
+                    
+                    <div class="gradient-display">
+                        <h3>Gradient Flow</h3>
+                        <div id="gradient-info">
+                            <p>Gradients will appear here during backpropagation</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Neural Networks Section -->
+            <section id="neural-networks" class="content-section">
+                <h2>Neural Network Components</h2>
+                <p>Visualize neurons, layers, and multi-layer perceptrons:</p>
+                
+                <div class="demo-container">
+                    <div class="controls">
+                        <button id="neuron-demo-btn" class="demo-btn">Single Neuron</button>
+                        <button id="layer-demo-btn" class="demo-btn">Layer Demo</button>
+                        <button id="mlp-demo-btn" class="demo-btn">MLP Demo</button>
+                        <button id="reset-nn-btn" class="reset-btn">Reset</button>
+                    </div>
+                    
+                    <div id="nn-viz" class="visualization">
+                        <svg id="nn-svg" width="900" height="600">
+                            <!-- Neural network visualization will be created here -->
+                        </svg>
+                    </div>
+                    
+                    <div class="network-info">
+                        <h3>Network Architecture</h3>
+                        <div id="architecture-display">
+                            <p>Select a demo to see network details</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Training Section -->
+            <section id="training" class="content-section">
+                <h2>Training Loop Visualization</h2>
+                <p>Watch a neural network learn through gradient descent:</p>
+                
+                <div class="demo-container">
+                    <div class="controls">
+                        <button id="start-training-btn" class="demo-btn">Start Training</button>
+                        <button id="pause-training-btn" class="demo-btn">Pause</button>
+                        <button id="step-training-btn" class="demo-btn">Single Step</button>
+                        <button id="reset-training-btn" class="reset-btn">Reset</button>
+                    </div>
+                    
+                    <div class="training-layout">
+                        <div id="training-viz" class="visualization">
+                            <svg id="training-svg" width="600" height="400">
+                                <!-- Training visualization will be created here -->
+                            </svg>
+                        </div>
+                        
+                        <div class="training-metrics">
+                            <h3>Training Metrics</h3>
+                            <div id="loss-chart"></div>
+                            <div class="metric-values">
+                                <p>Epoch: <span id="epoch-count">0</span></p>
+                                <p>Loss: <span id="current-loss">0.000</span></p>
+                                <p>Learning Rate: <span id="learning-rate">0.01</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Built with Anime.js | Inspired by Andrej Karpathy's micrograd</p>
+        </footer>
+    </div>
+
+    <script src="value.js"></script>
+    <script src="nn.js"></script>
+    <script src="animations.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

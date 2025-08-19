@@ -1,0 +1,522 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    min-height: 100vh;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+/* Header Styles */
+header {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Navigation Styles */
+.section-nav {
+    display: flex;
+    justify-content: center;
+    background: #ecf0f1;
+    padding: 1rem 0;
+    border-bottom: 3px solid #3498db;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.nav-btn {
+    background: white;
+    border: 2px solid #bdc3c7;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 25px;
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+.nav-btn:hover {
+    background: #3498db;
+    border-color: #3498db;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.nav-btn.active {
+    background: #2980b9;
+    border-color: #2980b9;
+    color: white;
+}
+
+/* Main Content Styles */
+main {
+    padding: 2rem;
+}
+
+.content-section {
+    display: none;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.content-section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.content-section h2 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 0.5rem;
+}
+
+.content-section p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: #555;
+}
+
+/* Demo Container Styles */
+.demo-container {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.demo-btn, .reset-btn {
+    background: #3498db;
+    border: none;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.demo-btn:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.reset-btn {
+    background: #e74c3c;
+}
+
+.reset-btn:hover {
+    background: #c0392b;
+}
+
+.demo-btn:disabled {
+    background: #bdc3c7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Visualization Styles */
+.visualization {
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+    border: 2px solid #ecf0f1;
+    overflow: hidden;
+}
+
+svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* SVG Node Styles */
+.value-node {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.value-node rect {
+    fill: #3498db;
+    stroke: #2980b9;
+    stroke-width: 2;
+    rx: 8;
+}
+
+.value-node.input rect {
+    fill: #2ecc71;
+    stroke: #27ae60;
+}
+
+.value-node.output rect {
+    fill: #e74c3c;
+    stroke: #c0392b;
+}
+
+.value-node.intermediate rect {
+    fill: #f39c12;
+    stroke: #e67e22;
+}
+
+.value-node text {
+    fill: white;
+    font-size: 12px;
+    font-weight: bold;
+    text-anchor: middle;
+    dominant-baseline: central;
+    pointer-events: none;
+}
+
+.value-node:hover rect {
+    filter: brightness(1.1);
+    transform: scale(1.05);
+}
+
+.value-node.active rect {
+    stroke-width: 4;
+    filter: brightness(1.2);
+}
+
+/* Operation Node Styles */
+.op-node {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.op-node circle {
+    fill: #9b59b6;
+    stroke: #8e44ad;
+    stroke-width: 2;
+}
+
+.op-node text {
+    fill: white;
+    font-size: 14px;
+    font-weight: bold;
+    text-anchor: middle;
+    dominant-baseline: central;
+    pointer-events: none;
+}
+
+.op-node:hover circle {
+    filter: brightness(1.1);
+    transform: scale(1.1);
+}
+
+/* Edge Styles */
+.graph-edge {
+    stroke: #7f8c8d;
+    stroke-width: 2;
+    fill: none;
+    marker-end: url(#arrowhead);
+    transition: all 0.3s ease;
+}
+
+.graph-edge.active {
+    stroke: #e74c3c;
+    stroke-width: 3;
+    animation: pulse 1.5s infinite;
+}
+
+.graph-edge.gradient-flow {
+    stroke: #f39c12;
+    stroke-width: 4;
+    stroke-dasharray: 5,5;
+    animation: dash 1s linear infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+@keyframes dash {
+    from { stroke-dashoffset: 10; }
+    to { stroke-dashoffset: 0; }
+}
+
+/* Arrow Marker */
+defs marker {
+    fill: #7f8c8d;
+}
+
+/* Code Display Styles */
+.code-display {
+    background: #2c3e50;
+    color: #ecf0f1;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    font-family: 'Courier New', monospace;
+    overflow-x: auto;
+}
+
+.code-display pre {
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+/* Expression Builder Styles */
+.expression-builder {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    border-left: 4px solid #3498db;
+}
+
+.expression-builder h3 {
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.step-info {
+    color: #555;
+}
+
+/* Gradient Display Styles */
+.gradient-display {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    border-left: 4px solid #f39c12;
+}
+
+.gradient-display h3 {
+    color: #f39c12;
+    margin-bottom: 0.5rem;
+}
+
+/* Network Info Styles */
+.network-info, .architecture-display {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    border-left: 4px solid #9b59b6;
+}
+
+.network-info h3 {
+    color: #9b59b6;
+    margin-bottom: 0.5rem;
+}
+
+/* Training Layout Styles */
+.training-layout {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.training-metrics {
+    flex: 1;
+    min-width: 300px;
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #2ecc71;
+}
+
+.training-metrics h3 {
+    color: #2ecc71;
+    margin-bottom: 1rem;
+}
+
+.metric-values {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.metric-values p {
+    margin: 0;
+    padding: 0.5rem;
+    background: #f8f9fa;
+    border-radius: 4px;
+    border-left: 3px solid #2ecc71;
+}
+
+.metric-values span {
+    font-weight: bold;
+    color: #2ecc71;
+}
+
+/* Loss Chart Styles */
+#loss-chart {
+    width: 100%;
+    height: 200px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin: 1rem 0;
+    border: 1px solid #ecf0f1;
+    position: relative;
+    overflow: hidden;
+}
+
+.loss-line {
+    stroke: #e74c3c;
+    stroke-width: 2;
+    fill: none;
+}
+
+/* Neuron Visualization Styles */
+.neuron-circle {
+    fill: #3498db;
+    stroke: #2980b9;
+    stroke-width: 2;
+    transition: all 0.3s ease;
+}
+
+.neuron-circle.active {
+    fill: #e74c3c;
+    stroke: #c0392b;
+    r: 25;
+}
+
+.weight-line {
+    stroke: #7f8c8d;
+    stroke-width: 2;
+    transition: all 0.3s ease;
+}
+
+.weight-line.active {
+    stroke: #f39c12;
+    stroke-width: 4;
+}
+
+.bias-node {
+    fill: #9b59b6;
+    stroke: #8e44ad;
+    stroke-width: 2;
+}
+
+/* Footer Styles */
+footer {
+    background: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        margin: 0;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .section-nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .nav-btn {
+        width: 200px;
+        margin: 0.25rem;
+    }
+    
+    main {
+        padding: 1rem;
+    }
+    
+    .controls {
+        justify-content: center;
+    }
+    
+    .demo-btn, .reset-btn {
+        width: 140px;
+    }
+    
+    .training-layout {
+        flex-direction: column;
+    }
+}
+
+/* Tooltip Styles */
+.tooltip {
+    position: absolute;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    pointer-events: none;
+    z-index: 1000;
+    max-width: 200px;
+}
+
+/* Highlight Styles */
+.highlight {
+    animation: highlight 2s ease-in-out;
+}
+
+@keyframes highlight {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.5); }
+}
+
+/* Loading Spinner */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

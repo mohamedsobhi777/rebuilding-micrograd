@@ -97,25 +97,6 @@ class Value:
         return out
 
     def backward(self):
-
         self._backward()
         for v in self._prev:
             v.backward()
-
-        return
-
-        if self._prev:
-
-            if self._op == '+':
-                for v in self._prev:
-                    v.grad = self.grad
-            elif self._op == '*':
-                child_1, child_2 = list(self._prev)
-                print("child_1:", child_1)
-                print("child_2:", child_2)
-
-                child_1.grad = self.grad * child_2.data
-                child_2.grad = self.grad * child_1.data
-
-            for v in self._prev:
-                v.backward()
